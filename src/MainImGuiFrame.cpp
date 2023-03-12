@@ -30,6 +30,7 @@ void MainImGuiFrame::Update() {
     //Remember the name to ImGui::OpenPopup() and showFileDialog() must be same...
     if (m_open)
         ImGui::OpenPopup("Open File");
+        m_open = false;
 
     /* Optional third parameter. Support opening only compressed rar/zip files.
      * Opening any other file will show error, return false and won't close the dialog.
@@ -38,7 +39,6 @@ void MainImGuiFrame::Update() {
     {
         std::cout << m_file_dialog.selected_fn << std::endl;      // The name of the selected file or directory in case of Select Directory dialog mode
         std::cout << m_file_dialog.selected_path << std::endl;    // The absolute path to the selected file
-        m_open = false;
 
         // Do reading of file
         FileDumper file_dumper(m_file_dialog.selected_path);
