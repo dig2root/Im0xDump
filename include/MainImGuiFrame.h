@@ -5,14 +5,14 @@
 class MainImGuiFrame : public ImGuiFrame {
 public:
 	virtual void Update() override;
-	bool getClose() const { return close; }
+	bool getClose() const { return m_close; }
 
 private:
-	ImVec2 tool_size = ImVec2(720, 360);
-	ImVec2 tool_pos = ImVec2(0, 0);
-	bool open = false, close = false;
-	imgui_addons::ImGuiFileBrowser file_dialog;
-	MemoryEditor mem_edit;
-	char* bufferMemory;
-	int bufferSize=0;
+	ImVec2 m_tool_size = ImVec2(720, 360);
+	ImVec2 m_tool_pos = ImVec2(0, 0);
+	bool m_open = false, m_close = false;
+	imgui_addons::ImGuiFileBrowser m_file_dialog;
+	MemoryEditor m_mem_edit;
+	char* m_bufferMemory;
+	int m_bufferSize=0;
 };
