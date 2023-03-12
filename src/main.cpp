@@ -1,12 +1,16 @@
+#define GLFW_INCLUDE_NONE
 #include "GLFW/glfw3.h"
-
-#include "ImGuiFrame.h"
-#include "CustomImGuiFrame.h"
+#include "glad/glad.h"
+#include "MainImGuiFrame.h"
 
 using namespace std;
 
 int main()
 {
+	// Size of window
+	int width = 720;
+	int height = 360;	
+
 	// Setup window
 	if (!glfwInit())
 		return 1;
@@ -18,8 +22,10 @@ int main()
 	//glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // 3.2+ only
 	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);            // 3.0+ only
 
+	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE); // Disable resizing
+
 	// Create window with graphics context
-	GLFWwindow* window = glfwCreateWindow(1280, 720, "Dear ImGui - Example", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(width, height, "Im0xDump", NULL, NULL);
 	if (window == NULL)
 		return 1;
 	glfwMakeContextCurrent(window);
@@ -32,17 +38,19 @@ int main()
 	glfwGetFramebufferSize(window, &screen_width, &screen_height);
 	glViewport(0, 0, screen_width, screen_height);
 
-	CustomImGuiFrame imGuiFrame;
+	MainImGuiFrame imGuiFrame;
 	imGuiFrame.Init(window, glsl_version);
 	while (!glfwWindowShouldClose(window)) {
 		glfwPollEvents();
 
-		glClear(GL_COLOR_BUFFER_BIT);
 		imGuiFrame.NewFrame();
 		imGuiFrame.Update();
 		imGuiFrame.Render();
 		glfwSwapBuffers(window);
 
+		if (imGuiFrame.getClose()) {
+			glfwSetWindowShouldClose(window, GLFW_TRUE);
+		}
 	}
 	imGuiFrame.Shutdown();
 

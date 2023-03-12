@@ -1,4 +1,4 @@
-# DearImGuiTemplate
-A simple C++ Dear ImGui template based on GLFW, OpenGL and GLAD with vcpkg package manager.
+# Im0xDump
+A simple C++ hexadecimal dump file reader based on Dear ImGui.
 
-Imgui sample is based on this [repository](https://github.com/codetechandtutorials/imGUIexample) from codetechandtutorials.
+It uses the [ImGui-Addons](https://github.com/gallickgunner/ImGui-Addons) library to open a file explorer and [imgui_memory_editor](https://github.com/ocornut/imgui_club) to read dump.

@@ -6,7 +6,7 @@
 
 class ImGuiFrame {
 public:
-	void Init(GLFWwindow* window, const char* glsl_version);
+	virtual void Init(GLFWwindow* window, const char* glsl_version);
 	void NewFrame();
 	virtual void Update();
 	void Render();
